@@ -11,7 +11,7 @@ This document describes how to create a commmand-line interface for an SDK appli
 1. [Building a CLI With Cobra](#building-a-cli-with-cobra)
 2. [Commands](#commands)
 3. [Flags](#flags)
-4. [Application CLI](#application-cli)
+4. [Application CLI](#application-cli) (maybe rename)
 
 
 ## Building a CLI with Cobra
@@ -22,11 +22,28 @@ TODO: query route?
     
 ## Commands
 
-### Root Command 
+Every application first constructs a root command by creating `rootCmd`, then adding a number of subcommands to it. Among the subcommands are `TxCmd` and `QueryCmd`, which each have their own subcommands. 
 
-### TxCmd and QueryCmd
+`RootCmd` should add the following commands.
 
-### Subcommands 
+* **Status** command
+* **Config** from the SDK client tools.
+* **Serve** command
+* **Keys** commands
+
+`TxCmd` should add the following commands and all commands in each module the application is dependent on, retrieved by calling `GetTxCmd()`. 
+
+* **Sign** command from the [`auth`](https://github.com/cosmos/cosmos-sdk/tree/67f6b021180c7ef0bcf25b6597a629aca27766b8/docs/spec/auth) module, which signs messages in a transaction.
+* **Broadcast** command from the SDK client tools, which broadcasts transactions.
+* **Send** command from the [`bank`](https://github.com/cosmos/cosmos-sdk/tree/67f6b021180c7ef0bcf25b6597a629aca27766b8/docs/spec/bank) module, which is a transaction that allows accounts to send coins to one another.
+
+`QueryCmd` should add the following commands and all commands in each module the application is dependent on, retrieved by calling `GetQueryCmd()`. 
+
+* **SearchTx** 
+* **QueryTx** 
+* **Account** command from the `auth` module.
+* **Validator** command
+* **Block** command 
 
 ### Query Example
 
@@ -101,6 +118,6 @@ Queries also have flags.
 * `--ledger` (optional) lets the user perform the action using a Ledger Nano S. 
 
 
-## Application CLI 
+## Application CLI (can rename)
 
 TODO: CLI `cmd/appcli/main.go`, LCD `cmd/appd/main.go`
