@@ -24,7 +24,7 @@ unbonding period has elapsed regardless of the validator's status.
 
 #### SDK
 
-* [\#4273](https://github.com/cosmos/cosmos-sdk/issues/4273) Fix usage of `AppendTags` in x/staking/handler.go
+* [\#4273](https://github.com/colors/colors-sdk/issues/4273) Fix usage of `AppendTags` in x/staking/handler.go
 
 ### Improvements
 
